@@ -18,33 +18,33 @@ implements ActionListener, WindowListener, WindowFocusListener
 {
 	static final String RES_PATH;
 	static final int SCR_WIDTH, SCR_HEIGHT;
-	
+
 	private Model model;
 	private Timer timer;
 	private ApplicationWindow window;
 	private SettingsWindow wSettings;
 	private LogWindow wLog;
-	
+
 	// Settings:
 	protected boolean cheat, sound, animation;
 	protected int rows, cols, mines;
-	
+
 	static {
 		SCR_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
 		SCR_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
-		RES_PATH = "/minesweeper/res/";
+		RES_PATH = "/res/";
 	}
-	
+
 	public Model getModel () { return model; }
-	
+
 	public ApplicationWindow getAppWindow () { return window; }
-	
+
 	public LogWindow getLogWindow () { return wLog; }
-	
+
 	public SettingsWindow getSettingsWindow () { return wSettings; }
-	
+
 	public Timer getTimer () { return timer; }
-	
+
 	public Controller (int rows, int cols, int mines, boolean sound, boolean animation)
 	{
 		window = new ApplicationWindow(this);
@@ -66,7 +66,7 @@ implements ActionListener, WindowListener, WindowFocusListener
 			SwingUtilities.updateComponentTreeUI(wSettings);
 		} catch (Exception e) { }
 	}
-	
+
 	private String selectPLAF ()
 	{
 		String laf = "";
@@ -78,7 +78,7 @@ implements ActionListener, WindowListener, WindowFocusListener
 		}
 		return laf;
 	}
-	
+
 	private void play ()
 	{
 		timer.restart();
@@ -98,7 +98,7 @@ implements ActionListener, WindowListener, WindowFocusListener
 		}
 		window.setVisible(true);
 	}
-	
+
 	public static void main (String[] args)
 	{
 		new Controller(10, 10, 5, true, true).play();
@@ -120,13 +120,13 @@ implements ActionListener, WindowListener, WindowFocusListener
 		else
 			model.flagField(pos);
 	}
-	
+
 	public void quit ()
 	{
 		if (model.isDone() || window.confirmQuitting())
 			System.exit(0);
 	}
-	
+
 	public void actionPerformed (ActionEvent e)
 	{
 		String cmd = e.getActionCommand();
@@ -157,7 +157,7 @@ implements ActionListener, WindowListener, WindowFocusListener
 			wSettings.setVisible(false);
 		}
 	}
-	
+
 	public void windowActivated (WindowEvent e) { }
 
 	public void windowClosed (WindowEvent e) { }

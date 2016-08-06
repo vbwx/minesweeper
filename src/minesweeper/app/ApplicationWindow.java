@@ -40,9 +40,9 @@ implements MouseListener, FieldListener, TimerListener
 	private JMenuItem mLog;
 	private JTextField tTimer, tMines;
 	private AudioClip boom, yeah;
-	
+
 	public Field getField () { return field; }
-	
+
 	public ApplicationWindow (Controller c)
 	{
 		super("Minesweeper");
@@ -54,7 +54,7 @@ implements MouseListener, FieldListener, TimerListener
 			boom = Applet.newAudioClip(getClass().getResource(Controller.RES_PATH + "boom.wav"));
 			yeah = Applet.newAudioClip(getClass().getResource(Controller.RES_PATH + "yeah.wav"));
 		} catch (Exception e) { }
-		
+
 		JMenuBar mb = new JMenuBar();
 		JMenu menu = new JMenu("Spiel");
 		JMenuItem mNew = new JMenuItem("Neues Spiel");
@@ -86,12 +86,12 @@ implements MouseListener, FieldListener, TimerListener
 		mi.addActionListener(controller);
 		menu.add(mi);
 		menu.addSeparator();
-		mi = new JMenuItem("Über Minesweeper");
+		mi = new JMenuItem("Ãœber Minesweeper");
 		mi.setActionCommand("about");
 		mi.addActionListener(controller);
 		menu.add(mi);
 		mb.add(menu);
-		
+
 		JPanel top = new JPanel();
 		top.setLayout(new BorderLayout());
 		JPanel p = new JPanel();
@@ -134,11 +134,11 @@ implements MouseListener, FieldListener, TimerListener
 		tTimer.setPreferredSize(new Dimension(46, 20));
 		p.add(tTimer);
 		top.add(p, BorderLayout.EAST);
-		
+
 		setJMenuBar(mb);
 		add(top, BorderLayout.NORTH);
 		add(field, BorderLayout.CENTER);
-		
+
 		addWindowFocusListener(controller);
 		addWindowListener(controller);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -161,7 +161,7 @@ implements MouseListener, FieldListener, TimerListener
 	{
 		bNewGame.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 	}
-	
+
 	@Override
 	public void setVisible (boolean visible)
 	{
@@ -169,7 +169,7 @@ implements MouseListener, FieldListener, TimerListener
 			controller.getLogWindow().setVisible(visible);
 		super.setVisible(visible);
 	}
-	
+
 	@Override
 	public void setLocation (int xEnd, int yEnd)
 	{
@@ -185,11 +185,11 @@ implements MouseListener, FieldListener, TimerListener
 		} else
 			super.setLocation(xEnd, yEnd);
 	}
-	
+
 	public void showAboutMessage ()
 	{
 		JOptionPane.showMessageDialog(this,
-			"Minesweeper 2.4\nCopyright © 2010 Bernhard Waldbrunner", "",
+			"Minesweeper 2.4\nCopyright Â© 2010 Bernhard Waldbrunner", "",
 			JOptionPane.PLAIN_MESSAGE);
 	}
 
@@ -211,25 +211,25 @@ implements MouseListener, FieldListener, TimerListener
 	{
 		return new ImageIcon(getClass().getResource(Controller.RES_PATH + name + ".gif"));
 	}
-	
+
 	public void showHelpMessage ()
 	{
 		JOptionPane.showMessageDialog(this,
 			"Klicken Sie auf ein Feld, um es aufzudecken.\n\n" +
 			"Ein Rechtsklick belegt das Feld mit einer Flagge bzw. Markierung.\n" +
-			"Flaggen lassen sich nicht mehr aufdecken, sie müssen zuerst " +
+			"Flaggen lassen sich nicht mehr aufdecken, sie mÃ¼ssen zuerst " +
 			"mit einem weiteren Rechtsklick entfernt werden.\n\n" +
-			"Das Spiel kann pausiert werden, indem man z.B. außerhalb des " +
+			"Das Spiel kann pausiert werden, indem man z.B. auÃŸerhalb des " +
 			"Fensters klickt.",
 			"Anleitung", JOptionPane.PLAIN_MESSAGE);
 	}
-	
+
 	public void showCheatMessage ()
 	{
 		JOptionPane.showMessageDialog(this, "Hinweis: Konami-Code", "Cheat-Modus",
 			JOptionPane.PLAIN_MESSAGE);
 	}
-	
+
 	public boolean confirmQuitting ()
 	{
 		return (JOptionPane.showConfirmDialog(this,
@@ -283,7 +283,7 @@ implements MouseListener, FieldListener, TimerListener
 	{
 		tTimer.setText(String.format("%04d", e.getElapsedTime()));
 	}
-	
+
 	public void toggleSmiley (boolean normal)
 	{
 		bNewGame.setIcon(loadImage(normal ? "smiley" : "o"));
