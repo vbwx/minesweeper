@@ -1,6 +1,11 @@
 # Minesweeper
 
-A Java GUI app that looks a lot like the classic Minesweeper game that was bundled with Windows since version 3.0.
+This is a Java GUI app that emulates the classic Minesweeper game that was bundled with Windows since version 3.0.
 
-## Usage
-Run `java minesweeper.app.Controller` from the command line.
+## Installation
+Make sure you have the [Java Runtime Environment](https://www.java.com/en/) (at least version 5) installed and double-click `minesweeper` (on macOS) or `minesweeper.bat` (on Windows) in the `dist` folder.
+
+## Building
+**Dependencies:** JDK >= 1.5
+
+Just run `make`. To create the JAR file, run `make jar`.
