@@ -8,4 +8,4 @@ Make sure you have the [Java Runtime Environment](https://www.java.com/en/) (at 
 ## Building
 **Dependencies:** JDK >= 1.5
 
-Just run `make`. To create the JAR file, run `make jar`.
+Just run `make`. To also create the JAR file, run `make all`.
