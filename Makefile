@@ -1,8 +1,7 @@
-dist/build: $(wildcard src/minesweeper/event/*.java) $(wildcard src/minesweeper/*.java) $(wildcard src/minesweeper/app/*.java)
+dist/build: $(wildcard src/minesweeper/*.java) $(wildcard src/minesweeper/*/*.java)
 	[ -f $@ ] || echo 0 > $@
-	build=`awk '{ print $$1 + 1 }' $@`; echo $$build > $@
 	[ -d .tmp ] || mkdir .tmp
-	javac -d .tmp $^
+	javac -d .tmp $^ && build=`awk '{ print $$1 + 1 }' $@` && echo $$build > $@
 
 dist/Minesweeper.jar: src/Manifest dist/build
 	jar cfm $@ $< res -C .tmp minesweeper
