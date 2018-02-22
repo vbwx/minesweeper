@@ -56,37 +56,37 @@ implements MouseListener, FieldListener, TimerListener
 		} catch (Exception e) { }
 
 		JMenuBar mb = new JMenuBar();
-		JMenu menu = new JMenu("Spiel");
-		JMenuItem mNew = new JMenuItem("Neues Spiel");
+		JMenu menu = new JMenu("Game");
+		JMenuItem mNew = new JMenuItem("New Game");
 		mNew.setActionCommand("new_game");
 		mNew.addActionListener(controller);
 		menu.add(mNew);
 		menu.addSeparator();
-		mLog = new JMenuItem("Aufzeichnung anzeigen");
+		mLog = new JMenuItem("Show Game Log");
 		mLog.setActionCommand("show_log");
 		mLog.addActionListener(controller);
 		menu.add(mLog);
-		JMenuItem mi = new JMenuItem("Einstellungen...");
+		JMenuItem mi = new JMenuItem("Settings...");
 		mi.setActionCommand("settings");
 		mi.addActionListener(controller);
 		menu.add(mi);
 		menu.addSeparator();
-		mi = new JMenuItem("Beenden");
+		mi = new JMenuItem("Quit Minesweeper");
 		mi.setActionCommand("quit");
 		mi.addActionListener(controller);
 		menu.add(mi);
 		mb.add(menu);
-		menu = new JMenu("Hilfe");
-		mi = new JMenuItem("Anleitung...");
+		menu = new JMenu("Help");
+		mi = new JMenuItem("Instructions...");
 		mi.setActionCommand("help");
 		mi.addActionListener(controller);
 		menu.add(mi);
-		mi = new JMenuItem("Cheat-Modus...");
+		mi = new JMenuItem("God Mode...");
 		mi.setActionCommand("cheating");
 		mi.addActionListener(controller);
 		menu.add(mi);
 		menu.addSeparator();
-		mi = new JMenuItem("Über Minesweeper");
+		mi = new JMenuItem("About Minesweeper");
 		mi.setActionCommand("about");
 		mi.addActionListener(controller);
 		menu.add(mi);
@@ -189,21 +189,21 @@ implements MouseListener, FieldListener, TimerListener
 	public void showAboutMessage ()
 	{
 		JOptionPane.showMessageDialog(this,
-			"Minesweeper 2.4\nCopyright © 2010 Bernhard Waldbrunner", "",
+			"Minesweeper 2.4 (EN)\nCopyright © 2010-2018 Bernhard Waldbrunner", "",
 			JOptionPane.PLAIN_MESSAGE);
 	}
 
 	public void showLogWindow ()
 	{
 		controller.getLogWindow().setVisible(true);
-		mLog.setText("Aufzeichnung verbergen");
+		mLog.setText("Hide Game Log");
 		mLog.setActionCommand("hide_log");
 	}
 
 	public void hideLogWindow ()
 	{
 		controller.getLogWindow().setVisible(false);
-		mLog.setText("Aufzeichnung anzeigen");
+		mLog.setText("Show Game Log");
 		mLog.setActionCommand("show_log");
 	}
 
@@ -215,25 +215,23 @@ implements MouseListener, FieldListener, TimerListener
 	public void showHelpMessage ()
 	{
 		JOptionPane.showMessageDialog(this,
-			"Klicken Sie auf ein Feld, um es aufzudecken.\n\n" +
-			"Ein Rechtsklick belegt das Feld mit einer Flagge bzw. Markierung.\n" +
-			"Flaggen lassen sich nicht mehr aufdecken, sie müssen zuerst " +
-			"mit einem weiteren Rechtsklick entfernt werden.\n\n" +
-			"Das Spiel kann pausiert werden, indem man z.B. außerhalb des " +
-			"Fensters klickt.",
-			"Anleitung", JOptionPane.PLAIN_MESSAGE);
+			"Click on a field to reveal what's hidden there.\n\n" +
+			"Right-click on a field to flag or mark it.\n" +
+			"Flagged fields can only be revealed after right-clicking them again.\n\n" +
+			"You can pause the game by clicking outside of the window.",
+			"Instructions", JOptionPane.PLAIN_MESSAGE);
 	}
 
 	public void showCheatMessage ()
 	{
-		JOptionPane.showMessageDialog(this, "Hinweis: Konami-Code", "Cheat-Modus",
+		JOptionPane.showMessageDialog(this, "Hint: Konami code", "God Mode",
 			JOptionPane.PLAIN_MESSAGE);
 	}
 
 	public boolean confirmQuitting ()
 	{
 		return (JOptionPane.showConfirmDialog(this,
-			"Wollen Sie das Spiel wirklich abbrechen?", "Spiel beenden",
+			"Do you really want to abandon the game?", "",
 			JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION);
 	}
 

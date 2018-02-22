@@ -19,7 +19,7 @@ public final class LogWindow extends JDialog
 {
 	private ApplicationWindow parent;
 	private JScrollPane pane;
-	private DefaultListModel log;
+	private DefaultListModel<String> log;
 	private Controller controller;
 	private boolean shown;
 	
@@ -27,14 +27,14 @@ public final class LogWindow extends JDialog
 	
 	public LogWindow (Controller ctrl)
 	{
-		super(ctrl.getAppWindow(), "Aufzeichnung");
+		super(ctrl.getAppWindow(), "Game Log");
 		parent = ctrl.getAppWindow();
 		controller = ctrl;
-		log = new DefaultListModel();
+		log = new DefaultListModel<String>();
 		setResizable(false);
 		setFocusableWindowState(false);
 		addWindowListener(this);
-		JList list = new JList(log);
+		JList<String> list = new JList<String>(log);
 		list.setEnabled(false);
 		pane = new JScrollPane(list);
 		pane.setBorder(BorderFactory.createEmptyBorder());
@@ -119,36 +119,36 @@ public final class LogWindow extends JDialog
 	public void gamePaused (TimerEvent e)
 	{
 		Model m = (Model)e.getSource();
-		log.addElement("Spiel pausiert (" + m.getElapsedTime() + " s)");
+		log.addElement("Paused (" + m.getElapsedTime() + " s)");
 	}
 
 	public void gameResumed (TimerEvent e)
 	{
-		log.addElement("Spiel fortgesetzt");
+		log.addElement("Resumed");
 	}
 
 	public void timeElapsed (TimerEvent e) { }
 
 	public void fieldRevealed (FieldEvent e)
 	{
-		log.addElement(e.getPosition());
+		log.addElement(e.getPosition().toString());
 	}
 
 	public void gameLost (FieldEvent e)
 	{
 		Model m = (Model)e.getSource();
-		log.addElement("Verloren (" + m.getElapsedTime() + " s)");
+		log.addElement("Lost (" + m.getElapsedTime() + " s)");
 	}
 
 	public void gameStarted (FieldEvent e)
 	{
-		log.addElement("Neues Spiel");
+		log.addElement("Started");
 	}
 
 	public void gameWon (FieldEvent e)
 	{
 		Model m = (Model)e.getSource();
-		String q = (m.isCheating() ? "\"" : "");
-		log.addElement(q + "Gewonnen" + q + " (" + m.getElapsedTime() + " s)");
+		log.addElement("Won" + (m.isCheating() ? " LOL" : "") +
+			" (" + m.getElapsedTime() + " s)");
 	}
 }

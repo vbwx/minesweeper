@@ -35,10 +35,10 @@ public final class SettingsWindow extends JDialog implements ChangeListener, Key
 		panel.setLayout(new GridLayout(7, 1));
 		ctrl = controller;
 		
-		JLabel l = new JLabel("Einstellungen", JLabel.CENTER);
+		JLabel l = new JLabel("Settings", JLabel.CENTER);
 		panel.add(l);
 		JPanel p = new JPanel(new FlowLayout());
-		l = new JLabel("Spalten:", JLabel.RIGHT);
+		l = new JLabel("Columns:", JLabel.RIGHT);
 		l.setPreferredSize(new Dimension(77, 24));
 		p.add(l);
 		sCols = new JSlider(1, 99);
@@ -53,7 +53,7 @@ public final class SettingsWindow extends JDialog implements ChangeListener, Key
 		p.add(lCols);
 		panel.add(p);
 		p = new JPanel(new FlowLayout());
-		l = new JLabel("Zeilen:", JLabel.RIGHT);
+		l = new JLabel("Rows:", JLabel.RIGHT);
 		l.setPreferredSize(new Dimension(77, 24));
 		p.add(l);
 		sRows = new JSlider(1, 99);
@@ -68,7 +68,7 @@ public final class SettingsWindow extends JDialog implements ChangeListener, Key
 		p.add(lRows);
 		panel.add(p);
 		p = new JPanel(new FlowLayout());
-		l = new JLabel("Minen:", JLabel.RIGHT);
+		l = new JLabel("Mines:", JLabel.RIGHT);
 		l.setPreferredSize(new Dimension(77, 24));
 		p.add(l);
 		sMines = new JSlider(0, 99);
@@ -83,10 +83,10 @@ public final class SettingsWindow extends JDialog implements ChangeListener, Key
 		p.add(lMines);
 		panel.add(p);
 		p = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		l = new JLabel("Optionen:", JLabel.RIGHT);
+		l = new JLabel("Options:", JLabel.RIGHT);
 		l.setPreferredSize(new Dimension(77, 24));
 		p.add(l);
-		cSound = new JCheckBox("Sound-Effekte");
+		cSound = new JCheckBox("Sound effects");
 		cSound.addKeyListener(this);
 		p.add(cSound);
 		panel.add(p);
@@ -94,7 +94,7 @@ public final class SettingsWindow extends JDialog implements ChangeListener, Key
 		l = new JLabel("", JLabel.RIGHT);
 		l.setPreferredSize(new Dimension(77, 24));
 		p.add(l);
-		cAnimation = new JCheckBox("Animationen");
+		cAnimation = new JCheckBox("Animations");
 		cAnimation.addKeyListener(this);
 		p.add(cAnimation);
 		panel.add(p);
@@ -108,7 +108,7 @@ public final class SettingsWindow extends JDialog implements ChangeListener, Key
 		p.add(bOK);
 		getRootPane().setDefaultButton(bOK);
 		panel.add(p);
-		bCancel = new JButton("Abbrechen");
+		bCancel = new JButton("Cancel");
 		bCancel.setActionCommand("settings.cancel");
 		bCancel.addKeyListener(this);
 		bCancel.addActionListener(controller);
@@ -151,21 +151,37 @@ public final class SettingsWindow extends JDialog implements ChangeListener, Key
 	public void keyPressed (KeyEvent e)
 	{
 		switch (e.getKeyCode()) {
-		case KeyEvent.VK_ESCAPE: bCancel.doClick(); return;
-		case KeyEvent.VK_UP:     konami += "u"; break;
-		case KeyEvent.VK_DOWN:   konami += "d"; break;
-		case KeyEvent.VK_LEFT:   konami += "l"; break;
-		case KeyEvent.VK_RIGHT:  konami += "r"; break;
-		case KeyEvent.VK_A:      konami += "A"; break;
-		case KeyEvent.VK_B:      konami += "B"; break;
-		default:                 konami += " "; break;
+			case KeyEvent.VK_ESCAPE:
+				bCancel.doClick();
+				return;
+			case KeyEvent.VK_UP:    
+				konami += "u";
+				break;
+			case KeyEvent.VK_DOWN:  
+				konami += "d";
+				break;
+			case KeyEvent.VK_LEFT:  
+				konami += "l";
+				break;
+			case KeyEvent.VK_RIGHT: 
+				konami += "r";
+				break;
+			case KeyEvent.VK_A:     
+				konami += "A";
+				break;
+			case KeyEvent.VK_B:     
+				konami += "B";
+				break;
+			default:                
+				konami += " ";
+				break;
 		}
 		if (!konami.matches("^(u(u(d(d(l(r(l(r(B(A)?)?)?)?)?)?)?)?)?)?$"))
 			konami = "";
 		if (konami.equals("uuddlrlrBA")) {
 			bOK.requestFocusInWindow();
-			JOptionPane.showMessageDialog(this, "Cheat-Modus " + (cheat ? "de" : "") +
-				"aktiviert.", "", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this, "God mode " + (cheat ? "de" : "") +
+				"activated.", "", JOptionPane.INFORMATION_MESSAGE);
 			cheat = !cheat;
 			konami = "";
 		}
@@ -177,8 +193,7 @@ public final class SettingsWindow extends JDialog implements ChangeListener, Key
 	
 	public void showSettingsMessage ()
 	{
-		JOptionPane.showMessageDialog(this,
-			"Die Einstellungen werden erst bei einem neuen Spiel aktiv.",
+		JOptionPane.showMessageDialog(this, "Start a new game to apply these settings.",
 			"", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
